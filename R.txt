@@ -1,0 +1,186 @@
+#2nd program
+#objects
+a<-12
+b<-"anbu"
+c<-TRUE
+print(a)
+print(b)
+print(c)
+
+#attributes
+attributes(iris)
+
+#vector
+A<-c(1:5)
+B<-c(6:10)
+writeLines("The Vector A is:")
+print(A)
+writeLines("The Vector B is:")
+print(B)
+#arithmetic operation
+print(A+B)
+print(A-B)
+print(A*B)
+print(A/B)
+
+#list
+x<-list("anbu",19,"pass")
+print(x)
+class(x)
+
+#3d program
+#dataframe
+data<-data.frame(Name=c("Anbu","Arun","Bala"),Grade=c('A','D','O'))
+print(data)
+
+#Matrix
+A<- matrix(c(1:9),nrow=3,ncol=3)
+print(A)
+B<- matrix(c(11:19),nrow=3,ncol=3)
+print(B)
+#arithmetic operation
+print(A+B)
+print(A-B)
+print(A*B)
+print(A/B)
+
+#factor
+color<-c("blue","red",'orange','gray','black','white','blue','red')
+print(factor(color))
+
+#function
+number<-function()
+{
+  print("hello world")
+}
+number()
+#function2
+square <- function(x)
+{
+  return(x^2)
+}
+square(10)
+
+
+
+#4th Program
+#expresion
+x<- 15-10
+y<- 11+23
+z<- 2*3
+print(x)
+print(y)
+print(z)
+a<- 25-x
+print(a)
+
+#logical statment
+a<- 20
+b<- 15
+print(a==b)
+print(a!=b)
+print(a||b)
+
+
+#5th SUBSETTING OF LIST,MATRIX,DATAFRAME
+my_list<-list(c(1:9),c(TRUE,FALSE),1)
+print(my_list)
+print(my_list[1])
+print(my_list[[2]][1])
+print(my_list[2])
+print(my_list[3])
+
+#MAtrix
+my_matrix<- matrix(sample(1:12),ncol=3)
+print(my_matrix)
+colnames(my_matrix)<- c('one','two','three')
+print(my_matrix)
+my_matrix[2,3]<- 10
+print(my_matrix)
+
+#dataframe
+data<- data.frame(Name=c('anbu','arun','bala'),rank=c('A','B','C'),Marks=c(45,56,54))
+print(data)
+data$Name[1]<- c('anbu')
+
+
+#6th Dataframe function on built in dataset
+data()
+data(iris)
+summary(iris)
+head(iris)
+head(iris,3)
+nrow(iris)
+ncol(iris)
+?iris
+
+
+#7th dplyr function retail dataset
+library(dplyr)
+retail_data<- data.frame(product=c("electronics","beauty","fashion","study"),sales=c(1000,2000,3200,1500),quantity=c(200,230,300,250))
+print(retail_data)
+total_sales<- retail_data %>% mutate(total_sales=c(sales*quantity))
+print(total_sales)
+high_sales<- retail_data %>% filter(sales>2000)
+print(high_sales)
+sort_data<- retail_data %>% arrange(desc(sales))
+print(sort_data)
+selected_data<- retail_data %>% select(product,sales)
+print(selected_data)
+summary_data<- retail_data %>% summarise(total_sales=sum(sales),avg_sales=mean(sales))
+print(summary_data)
+
+
+#8th dplyr function banking dataset
+library(dplyr)
+banking<- data.frame(Account_NO=c(1:5),Name=c('anbu','aajera','arun','bala','dhanu'),balance=c(2000,5000,2500,1000,15000))
+print(banking)
+banking<- banking %>% mutate(intrest=c(balance*.4))
+print(banking)
+selected<- banking %>% select(Name,balance)
+print(selected)
+arrange_data<- banking %>% arrange(desc(balance))
+print(arrange_data)
+fliter_data<- banking %>% filter(balance>2000)
+print(fliter_data)
+summary<- banking %>% summarise(total_balance=sum(balance))
+print(summary)
+
+
+#9th	BASIC PLOTTING IN R
+x <- c(1, 2, 3, 4, 5)
+y <- c(3, 5, 2, 8, 7)
+plot(x,y, type = "p", col = "blue", pch = 16)
+plot(x, y, type = "l", col = "red", lwd = 2)  # lwd controls line width
+hist(x, col = "lightblue", border = "black", main = "Histogram ")
+boxplot(x,y, col = c("red", "green", "blue"), main = "Boxplot")
+barplot(x,y, col = c("red", "green", "blue"), main = "borplot")
+
+
+#9th 
+data(mtcars)
+hist(mtcars$hp, col = "lightblue", border = "black", main = "Histogram ")
+plot(mtcars$mpg,mtcars$wt, main="mpg vs wt",xlab="mpg", ylab="wt",col="blue",pch=16)
+barplot(table(mtcars$cyl),main="Numbers of cylinders in car", xlab="cyclinder",ylab="frequency",col="pink")
+boxplot(Sepal.Length ~ Species,data=iris,main="Sepal length species", xlab="SepalLength",ylab="Species",col=c("orange","lightblue","lightgreen"))
+plot(airquality$Temp, type = "l",main="Temperature over Days",xlab="Days",ylab="Temperature",col="violet")
+
+
+#10 program ggolot
+library(ggplot2)
+ggplot(iris, aes(x=Species, y=Petal.Length, fill=Species))+geom_bar(stat="summary") + 
+  labs(title="Average Petal Length per Species", x="Flower Species", y="Average Petal Length")
+
+ggplot(ChickWeight, aes(x=factor(Diet), y=weight, fill=factor(Diet))) + geom_boxplot() + 
+  labs(title="Weight Distribution by Diet Type", x="Diet Type", y="Chick Weight")
+
+ggplot(airquality, aes(x=Day, y=Ozone,color=factor(Month))) + geom_line(size=1) + 
+  labs(title="Ozone Levels Over Time",x="Day of the Month",y="Ozone Level")
+
+ggplot(mtcars, aes(x=hp, y=mpg, color=factor(cyl))) + geom_point(size=3) + 
+  labs(title="Horsepower vs Miles per Gallon",x="Horsepower",y="Miles per Gallon")
+
+ggplot(mtcars, aes(x=factor(cyl), y=mpg, fill=factor(cyl))) +geom_violin(alpha=0.7) +
+  labs(title="Miles per Gallon by Cylinder Type",x="Number of Cylinders",y="Miles per Gallon")
+
+
